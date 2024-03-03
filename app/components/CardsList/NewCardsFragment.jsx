@@ -21,7 +21,7 @@ const NewCardsFragment = () => {
                 <p className={Styles["card__author"]}>
                   Автор: <span className={Styles["card__accent"]}>Mahisto</span>
                 </p>
-                <p className="card__votes">
+                <p className={Styles["card__votes"]}>
                   Голосов на сайте:{" "}
                   <span className={Styles["card__accent"]}>20</span>
                 </p>
@@ -48,7 +48,7 @@ const NewCardsFragment = () => {
                 <p className={Styles["card__author"]}>
                   Автор: <span className={Styles["card__accent"]}>IDKWIAm</span>
                 </p>
-                <p className="card__votes">
+                <p className={Styles["card__votes"]}>
                   Голосов на сайте:{" "}
                   <span className={Styles["card__accent"]}>10</span>
                 </p>
@@ -75,7 +75,7 @@ const NewCardsFragment = () => {
                 <p className={Styles["card__author"]}>
                   Автор: <span className={Styles["card__accent"]}>IDKWIAm</span>
                 </p>
-                <p className="card__votes">
+                <p className={Styles["card__votes"]}>
                   Голосов на сайте:{" "}
                   <span className={Styles["card__accent"]}>20</span>
                 </p>
@@ -102,7 +102,7 @@ const NewCardsFragment = () => {
                 <p className={Styles["card__author"]}>
                   Автор: <span className={Styles["card__accent"]}>niclan</span>
                 </p>
-                <p className="card__votes">
+                <p className={Styles["card__votes"]}>
                   Голосов на сайте:{" "}
                   <span className={Styles["card__accent"]}>10</span>
                 </p>

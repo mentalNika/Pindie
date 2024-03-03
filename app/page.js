@@ -11,13 +11,8 @@ export default function Home() {
   return (
     <main className="main">
       <Banner />
-      <CardsList id={"popular"} title={"Популярные"}>
-        <PopularCardsFragment />
-      </CardsList>
-
-      <CardsList>
-        <NewCardsFragment id={"new"} title={"Новые"} />
-      </CardsList>
+      <CardsList id={"popular"} title={"Популярные"}></CardsList>
+      <CardsList id={"new"} title={"Новинки"}></CardsList>
       <Promo />
     </main>
   );

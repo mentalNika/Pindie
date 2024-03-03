@@ -22,7 +22,7 @@ const PopularCardsFragment = () => {
                   Автор:{" "}
                   <span className={Styles["card__accent"]}>Lonely Baobab</span>
                 </p>
-                <p className="card__votes">
+                <p className={Styles["card__votes"]}>
                   Голосов на сайте:{" "}
                   <span className={Styles["card__accent"]}>20</span>
                 </p>
@@ -51,7 +51,7 @@ const PopularCardsFragment = () => {
                 <p className={Styles["card__author"]}>
                   Автор: <span className={Styles["card__accent"]}>F-Style</span>
                 </p>
-                <p className="card__votes">
+                <p className={Styles["card__votes"]}>
                   Голосов на сайте:{" "}
                   <span className={Styles["card__accent"]}>10</span>
                 </p>
@@ -78,7 +78,7 @@ const PopularCardsFragment = () => {
                 <p className={Styles["card__author"]}>
                   Автор: <span className={Styles["card__accent"]}>MastWe</span>
                 </p>
-                <p className="card__votes">
+                <p className={Styles["card__votes"]}>
                   Голосов на сайте:{" "}
                   <span className={Styles["card__accent"]}>20</span>
                 </p>
