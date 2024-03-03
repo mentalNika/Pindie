@@ -1,17 +1,19 @@
+import Styles from "./Promo.module.css";
+
 const Promo = () => {
   return (
-    <section className="promo">
-      <div className="promo__description-block">
-        <h2 className="promo__title">Твой промокод</h2>
-        <p className="promo__description">
+    <section className={Styles["promo"]}>
+      <div className={Styles["promo__description-block"]}>
+        <h2 className={Styles["promo__title"]}>Твой промокод</h2>
+        <p className={Styles["promo__description"]}>
           Скидка на все курсы Яндекс Практикума для пользователей нашего сайта!
         </p>
-        <button className="button promo__button">Получить код</button>
+        <button className={Styles["button promo__button"]}>Получить код</button>
       </div>
       <img
         src="/images/promo-illustration.svg"
         alt="Собака"
-        className="promo__image"
+        className={Styles["promo__image"]}
       />
     </section>
   );
