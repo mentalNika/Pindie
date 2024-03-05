@@ -1,18 +1,18 @@
-import Image from "next/image";
-import styles from "./page.module.css";
 import "./globals.css";
 import Banner from "./components/Banner/Banner";
 import CardsList from "./components/CardsList/CardsList";
-import PopularCardsFragment from "./components/CardsList/PopularCardsFragment";
-import NewCardsFragment from "./components/CardsList/NewCardsFragment";
 import Promo from "./components/Promo/Promo";
+import getGamesByCategory from "./data/data-utils";
+
+const popularGames = getGamesByCategory("popular")
+const newGames = getGamesByCategory("new")
 
 export default function Home() {
   return (
     <main className="main">
       <Banner />
-      <CardsList id={"popular"} title={"Популярные"}></CardsList>
-      <CardsList id={"new"} title={"Новинки"}></CardsList>
+      <CardsList id={"popular"} title={"Популярные"} data={popularGames}></CardsList>
+      <CardsList id={"new"} title={"Новинки"} data={newGames}></CardsList>
       <Promo />
     </main>
   );
