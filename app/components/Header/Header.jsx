@@ -1,6 +1,19 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
 import Styles from "./Header.module.css";
+import { Overlay } from "../Overlay/Overlay";
+import { Popup } from "../Popup/Popup";
+import { AuthForm } from "../AuthForm/AuthForm";
 
 const Header = () => {
+  const [popupIsOpened, setPopupIsOpened] = useState(false);
+  const openPopup = () => {
+    setPopupIsOpened(true);
+  };
+  const closePopup = () => {
+    setPopupIsOpened(false);
+  };
   return (
     <header className={Styles["header"]}>
       <a href="./index.html" className={Styles["logo"]}>
@@ -11,42 +24,48 @@ const Header = () => {
         />
       </a>
       <nav className={Styles["menu"]}>
-        <ul className={Styles["menu__list"]}>
+      <ul className={Styles["menu__list"]}>
           <li className={Styles["menu__item"]}>
-            <a href="" className={Styles["menu__link"]}>
+            <Link href="/new" className={Styles["menu__link"]}>
               Новинки
-            </a>
+            </Link>
           </li>
           <li className={Styles["menu__item"]}>
-            <a href="" className={Styles["menu__link"]}>
+            <Link href="/popular" className={Styles["menu__link"]}>
               Популярные
-            </a>
+            </Link>
           </li>
           <li className={Styles["menu__item"]}>
-            <a href="" className={Styles["menu__link"]}>
+            <Link href="/shooters" className={Styles["menu__link"]}>
               Шутеры
-            </a>
+            </Link>
           </li>
           <li className={Styles["menu__item"]}>
-            <a href="" className={Styles["menu__link"]}>
+            <Link href="/runners" className={Styles["menu__link"]}>
               Раннеры
-            </a>
+            </Link>
           </li>
           <li className={Styles["menu__item"]}>
-            <a href="" className={Styles["menu__link"]}>
+            <Link href="/pixel-games" className={Styles["menu__link"]}>
               Пиксельные
-            </a>
+            </Link>
           </li>
           <li className={Styles["menu__item"]}>
-            <a href="" className={Styles["menu__link"]}>
+            <Link href="/tds" className={Styles["menu__link"]}>
               TDS
-            </a>
+            </Link>
           </li>
         </ul>
         <div className={Styles["auth"]}>
-          <button className={Styles["auth__button"]}>Войти</button>
+          <button className={Styles["auth__button"]} onClick={openPopup}>
+            Войти
+          </button>
         </div>
       </nav>
+      <Overlay popupIsOpened={popupIsOpened} closePopup={closePopup}/>
+      <Popup popupIsOpened={popupIsOpened} closePopup={closePopup}>
+        <AuthForm />
+      </Popup>
     </header>
   );
 };
