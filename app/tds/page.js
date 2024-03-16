@@ -1,4 +1,4 @@
-import getGamesByCategory from "../data/data-utils";
+import { getGamesByCategory } from "../data/data-utils";
 import CardsList from "../components/CardsList/CardsList";
 
 const Tds = () => {

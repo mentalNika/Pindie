@@ -2,7 +2,7 @@ import "./globals.css";
 import Banner from "./components/Banner/Banner";
 import CardsList from "./components/CardsList/CardsList";
 import Promo from "./components/Promo/Promo";
-import getGamesByCategory from "./data/data-utils";
+import { getGamesByCategory } from "./data/data-utils";
 
 const popularGames = getGamesByCategory("popular")
 const newGames = getGamesByCategory("new")
