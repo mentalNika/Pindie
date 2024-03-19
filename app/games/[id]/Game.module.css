@@ -61,19 +61,6 @@
   letter-spacing: 6%;
 }
 
-.not-found {
-  text-align: center;
-  font-size: 62px;
-  font-weight: bold;
-}
-
-.not-found__img {
-  max-width: 1800px;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 @media (width <= 1200px) {
   .game {
     padding: 72px 32px;
@@ -81,12 +68,6 @@
 
   .about {
     padding: 0 32px 72px;
-  }
-
-  .not-found {
-    text-align: center;
-    font-size: 42px;
-    font-weight: bold;
   }
 }
 
@@ -113,11 +94,5 @@
 
   .about__content {
     border-right: none;
-  }
-
-  .not-found {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
   }
 }
