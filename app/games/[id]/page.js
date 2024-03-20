@@ -12,7 +12,8 @@ import { endpoints } from "@/app/api/config";
 import { isResponseOk } from "../../api/api-utils";
 import GameNotFound from "@/app/components/GameNotFound/GameNotFound";
 import { Preloader } from "@/app/components/Preloader/Preloader";
-import { authorize } from "../../api/api-utils";
+import { checkIfUserVoted } from "../../api/api-utils";
+import { vote } from "../../api/api-utils";
 
 export default function GamePage(props) {
   const [preloaderVisible, setPreloaderVisible] = useState(true);
@@ -48,6 +49,38 @@ export default function GamePage(props) {
     }
   }, []);
 
+  const [isVoted, setIsVoted] = useState(false);
+
+  useEffect(() => {
+    if (game && currentUser) {
+      setIsVoted(checkIfUserVoted(game, currentUser.id));
+    } else {
+      setIsVoted(false);
+    }
+  }, [currentUser, game]);
+
+  const handleVote = async () => {
+    const jwt = getJWT();
+    let usersIdArray = game.users.length
+      ? game.users.map((user) => user.id)
+      : [];
+    usersIdArray.push(currentUser.id);
+    const response = await vote(
+      `${endpoints.games}/${game.id}`,
+      jwt,
+      usersIdArray
+    );
+    if (isResponseOk(response)) {
+      setIsVoted(true);
+      setGame(() => {
+        return {
+          ...game,
+          users: [...game.users, currentUser],
+        };
+      });
+    }
+  };
+
   return (
     <>
       {game ? (
@@ -76,10 +109,11 @@ export default function GamePage(props) {
                 </span>
               </p>
               <button
-                disabled={!isAuthorized}
+                disabled={!isAuthorized || isVoted}
                 className={`button ${Styles["about__vote-button"]}`}
+                onClick={handleVote}
               >
-                Голосовать
+                {isVoted ? "Голос учтён" : "Голосовать"}
               </button>
             </div>
           </section>
