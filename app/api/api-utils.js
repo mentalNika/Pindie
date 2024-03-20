@@ -64,3 +64,39 @@ export const authorize = async (url, data) => {
     return error;
   }
 };
+
+/**
+ *
+ * URL-адрес в виде строки, куда будет выполнен запрос
+ * JWT–токен в виде строки
+ */
+export const getMe = async (url, jwt) => {
+  try {
+    // Выполняем запрос
+    const response = await fetch(url, {
+      // Запрос выполняется методом GET
+      method: "GET",
+      // JWT-токен передаётся в специальном заголовке Authorization
+      headers: { Authorization: `Bearer ${jwt}` },
+    });
+    if (response.status !== 200) {
+      throw new Error("Ошибка получения данных");
+    }
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const setJWT = (jwt) => {
+  localStorage.setItem("jwt", jwt);
+};
+
+export const getJWT = () => {
+    return localStorage.getItem("jwt");
+};
+
+export const removeJWT = () => {
+  localStorage.removeItem("jwt");
+}; 

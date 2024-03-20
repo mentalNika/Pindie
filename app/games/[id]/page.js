@@ -2,11 +2,17 @@
 
 import Styles from "./Game.module.css";
 import { useEffect, useState } from "react";
-import { getNormalizedGameDataById } from "../../api/api-utils";
+import {
+  getJWT,
+  getMe,
+  getNormalizedGameDataById,
+  removeJWT,
+} from "../../api/api-utils";
 import { endpoints } from "@/app/api/config";
 import { isResponseOk } from "../../api/api-utils";
 import GameNotFound from "@/app/components/GameNotFound/GameNotFound";
 import { Preloader } from "@/app/components/Preloader/Preloader";
+import { authorize } from "../../api/api-utils";
 
 export default function GamePage(props) {
   const [preloaderVisible, setPreloaderVisible] = useState(true);
@@ -22,6 +28,24 @@ export default function GamePage(props) {
     }
 
     fetchData();
+  }, []);
+
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const jwt = getJWT();
+    if (jwt) {
+      getMe(endpoints.me, jwt).then((userData) => {
+        if (isResponseOk(userData)) {
+          setIsAuthorized(true);
+          setCurrentUser(userData);
+        } else {
+          setIsAuthorized(false);
+          removeJWT();
+        }
+      });
+    }
   }, []);
 
   return (
@@ -52,8 +76,8 @@ export default function GamePage(props) {
                 </span>
               </p>
               <button
+                disabled={!isAuthorized}
                 className={`button ${Styles["about__vote-button"]}`}
-                onClick={() => router.push("/auth_form")}
               >
                 Голосовать
               </button>
