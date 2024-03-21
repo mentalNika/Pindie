@@ -1,7 +1,8 @@
 import Banner from "./components/Banner/Banner";
 import CardsList from "./components/CardsList/CardsList";
 import Promo from "./components/Promo/Promo";
-import { getGamesByCategory } from "./data/data-utils";
+import { getNormalizedGamesDataByCategory } from "./api/api-utils";
+import { endpoints } from "./api/config";
 
 export const getData = async (url) => {
   try {
@@ -20,9 +21,15 @@ export default async function Home() {
   const dataFromUrl = await getData(
     "https://api-code-2.practicum-team.ru/games"
   );
-  const popularGames = getGamesByCategory("popular");
-  const newGames = getGamesByCategory("new");
+  const popularGames = await getNormalizedGamesDataByCategory(
+    endpoints.games,
+    "popular"
+  );
 
+  const newGames = await getNormalizedGamesDataByCategory(
+    endpoints.games,
+    "new"
+  );
   return (
     <main className="main">
       <Banner />

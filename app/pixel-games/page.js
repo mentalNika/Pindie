@@ -1,12 +1,16 @@
-import { getGamesByCategory } from "../data/data-utils";
 import CardsList from "../components/CardsList/CardsList";
+import { endpoints } from "../api/config";
+import { getNormalizedGamesDataByCategory } from "../api/api-utils";
 
-const PixelGames = () => {
-  const pixelGames = getGamesByCategory("pixel");
+const PixelGames = async () => {
+  const pixelGames = await getNormalizedGamesDataByCategory(
+    endpoints.games,
+    "pixel"
+  );
 
   return (
     <main className={"main-inner"}>
-      <CardsList id="pixel" title="Пиксельные игры" data={pixelGames}/>
+      <CardsList id="pixel" title="Пиксельные игры" data={pixelGames} />
     </main>
   );
 };
